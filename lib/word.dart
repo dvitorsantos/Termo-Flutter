@@ -3,15 +3,24 @@ import 'package:flutter/material.dart';
 import 'letter.dart';
 
 class Word extends StatelessWidget {
+
+  String value = '';
+
+  List <Letter> letters = <Letter>[
+    Letter(),
+    Letter(),
+    Letter(),
+    Letter(),
+    Letter()
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
-        Letter(),
-        Letter(),
-        Letter(),
-        Letter(),
-        Letter()
+        Row(
+          children: letters.map((letter) => letter).toList(),
+        ),
       ],
     );
   }

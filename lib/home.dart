@@ -11,7 +11,12 @@ class Home extends StatefulWidget {
 }
 
 class HomeState extends State<Home> {
-  int counter = 0;
+
+  String word = '';
+  String attempt = '';
+  List <Word> words = <Word>[
+    Word(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +37,16 @@ class HomeState extends State<Home> {
                     ),
                   ),      
                 ),
-                Word(),
-                Word(),
-                Word(),
-                Word()
+                Column(
+                  children: words.map((letter) => letter).toList(),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    attempt = '';
+                    for (var letter in words.last.letters) {
+                      attempt += letter.value;
+                    }
+                }, child: Text("Try"))
               ],
             )
         ),

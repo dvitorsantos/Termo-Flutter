@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class Letter extends StatelessWidget {
-
+class Letter extends StatefulWidget {
   String value = "";
-  
+  Color color = Colors.white;
+
+  @override
+  State<StatefulWidget> createState() {
+    return LetterState();
+  }
+}
+
+class LetterState extends State<Letter> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -18,10 +25,12 @@ class Letter extends StatelessWidget {
           ],
           decoration: InputDecoration(
             border: OutlineInputBorder(),
+            fillColor: widget.color, 
+            filled: true,
           ),
           textAlign: TextAlign.center,
           onChanged: (text) {
-            value = text;
+            widget.value = text;
           }
         ),
       )

@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'letter.dart';
 
-class Word extends StatelessWidget {
-
-  String value = '';
-
+class Word extends StatefulWidget {
   List <Letter> letters = <Letter>[
     Letter(),
     Letter(),
@@ -15,11 +12,18 @@ class Word extends StatelessWidget {
   ];
 
   @override
+  State<StatefulWidget> createState() {
+    return WordState();
+  }
+}
+
+class WordState extends State<Word> {
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Row(
-          children: letters.map((letter) => letter).toList(),
+          children: widget.letters.map((letter) => letter).toList(),
         ),
       ],
     );

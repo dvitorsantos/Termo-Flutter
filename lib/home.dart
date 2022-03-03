@@ -12,11 +12,23 @@ class Home extends StatefulWidget {
 
 class HomeState extends State<Home> {
 
-  String word = '';
+  String dayWord = 'praia';
   String attempt = '';
   List <Word> words = <Word>[
     Word(),
   ];
+
+  isCorrectAnswer(attempt) {
+    return attempt == dayWord.toUpperCase();
+  }
+
+  createAttempt(word) {
+    String attempt = '';
+    for (var letter in word.letters) {
+      attempt += letter.value;
+    }
+    return attempt;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +54,12 @@ class HomeState extends State<Home> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    attempt = '';
-                    for (var letter in words.last.letters) {
-                      attempt += letter.value;
+                    attempt = createAttempt(words.last);
+
+                    if (!isCorrectAnswer(attempt)) {
+                      setState(() {
+                        words.add(Word());
+                      });
                     }
                 }, child: Text("Try"))
               ],

@@ -36,7 +36,7 @@ class HomeState extends State<Home> {
   paintCorrectLetters(lastResultWord) {
     for (int i = 0; i < dayWord.length; i++) {
       if (isCorrectLetter(i)) {
-        lastResultWord.letters[i].color = Colors.green;
+        lastResultWord.letters[i].color = Color.fromRGBO(55, 164, 151, 1);
       }
     }
     return lastResultWord;
@@ -48,8 +48,23 @@ class HomeState extends State<Home> {
         if (dayWord[i] == attempt[j] &&
             !isCorrectLetter(j) &&
             !isCorrectLetter(i)) {
-          lastResultWord.letters[j].color = Colors.yellow;
+          lastResultWord.letters[j].color = Color.fromRGBO(212, 173, 107, 1);
         }
+      }
+    }
+    return lastResultWord;
+  }
+
+  paintNotExistingLetters(lastResultWord) {
+    for (int i = 0; i < attempt.length; i++) {
+      bool letterExists = false;
+      for (int j = 0; j < dayWord.length; j++) {
+        if (attempt[i] == dayWord[j]) {
+          letterExists = true;
+        }
+      }
+      if (!letterExists) {
+        lastResultWord.letters[i].color = Color.fromARGB(46, 44, 45, 1);
       }
     }
     return lastResultWord;
@@ -62,18 +77,22 @@ class HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Titulo teste")),
       body: Container(
+        decoration: new BoxDecoration(
+          color: Color.fromRGBO(111, 92, 98, 1),
+        ),
         child: Center(
             child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: Text(
-                "Guess the day word!",
+                "TERMO",
                 style: TextStyle(
-                  fontSize: 40,
+                  color: Colors.white,
+                  fontSize: 35,
                   fontWeight: FontWeight.bold,
+                  fontFamily: 'FredokaOne'
                 ),
               ),
             ),
@@ -87,6 +106,7 @@ class HomeState extends State<Home> {
                   Word lastResultWord = Word();
                   lastResultWord = paintCorrectLetters(lastResultWord);
                   lastResultWord = paintExistingLetters(lastResultWord);
+                  lastResultWord = paintNotExistingLetters(lastResultWord);
 
                   updateLastWord(lastResultWord);
 

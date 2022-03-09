@@ -85,19 +85,20 @@ class HomeState extends State<Home> {
             child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20),
+              padding: const EdgeInsets.symmetric(vertical: 50),
               child: Text(
                 "TERMO",
                 style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 35,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'FredokaOne'
-                ),
+                    color: Colors.white,
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'FredokaOne'),
               ),
             ),
-            Column(
-              children: words.map((letter) => letter).toList(),
+            SingleChildScrollView(
+              child: Column(
+                children: words.map((letter) => letter).toList(),
+              ),
             ),
             ElevatedButton(
                 onPressed: () {
@@ -120,7 +121,17 @@ class HomeState extends State<Home> {
                     });
                   }
                 },
-                child: Text("Try"))
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.green),
+                ),
+                child: Text(
+                  "TRY",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'FredokaOne'),
+                )),
           ],
         )),
       ),

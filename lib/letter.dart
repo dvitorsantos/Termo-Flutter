@@ -18,10 +18,10 @@ class LetterState extends State<Letter> {
         child: Container(
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
       child: TextField(
-          maxLength: 1,
           inputFormatters: [
             FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')),
             UpperCaseTextFormatter(),
+            LengthLimitingTextInputFormatter(1),
           ],
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
